@@ -32,11 +32,16 @@ public class ProxyNetworkConfig {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (o == this) return true;
+        if (!(o instanceof ProxyNetworkConfig)) {
+            return false;
+        }
         ProxyNetworkConfig proxyNetworkConfig = (ProxyNetworkConfig) o;
-        return Objects.equals(hostname, proxyNetworkConfig.hostname) && Objects.equals(port, proxyNetworkConfig.port);
+        return hostname.equals(proxyNetworkConfig.hostname) &&
+                Objects.equals(port, proxyNetworkConfig.port);
     }
+
 
     @Override
     public int hashCode() {
