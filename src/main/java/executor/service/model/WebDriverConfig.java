@@ -2,16 +2,16 @@ package executor.service.model;
 
 import java.util.Objects;
 
-public class WebDriverConfigDTO {
+public class WebDriverConfig {
     private String webDriverExecutable;
     private String userAgent;
     private Long pageLoadTimeout;
     private Long implicitlyWait;
 
-    public WebDriverConfigDTO() {
+    public WebDriverConfig() {
     }
 
-    public WebDriverConfigDTO(String webDriverExecutable, String userAgent, Long pageLoadTimeout, Long implicitlyWait) {
+    public WebDriverConfig(String webDriverExecutable, String userAgent, Long pageLoadTimeout, Long implicitlyWait) {
         this.webDriverExecutable = webDriverExecutable;
         this.userAgent = userAgent;
         this.pageLoadTimeout = pageLoadTimeout;
@@ -53,8 +53,8 @@ public class WebDriverConfigDTO {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof WebDriverConfigDTO)) return false;
-        WebDriverConfigDTO that = (WebDriverConfigDTO) o;
+        if (!(o instanceof WebDriverConfig)) return false;
+        WebDriverConfig that = (WebDriverConfig) o;
         return webDriverExecutable.equals(that.webDriverExecutable) && userAgent.equals(that.userAgent) &&
                 pageLoadTimeout.equals(that.pageLoadTimeout) && implicitlyWait.equals(that.implicitlyWait);
     }
