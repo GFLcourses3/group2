@@ -1,8 +1,9 @@
 package executor.service;
 
 import executor.service.model.ProxyCredentials;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 public class ProxyCredentialsTest {
@@ -10,75 +11,79 @@ public class ProxyCredentialsTest {
     private final String username = "username";
     private final String password = "password";
 
+    private ProxyCredentials actualCredentials;
+    private ProxyCredentials emptyCredentials;
+
+    @BeforeEach
+    public void setUp(){
+        actualCredentials = new ProxyCredentials(username, password);
+        emptyCredentials = new ProxyCredentials();
+    }
+
+    @Test
+    public void testNotNull() {
+        Assertions.assertNotNull(actualCredentials);
+    }
+
     @Test
     public void testEqualsDTO() {
-        ProxyCredentials expectedObject = new ProxyCredentials(username, password);
-        ProxyCredentials actualObject = new ProxyCredentials(username, password);
-        Assert.assertEquals(expectedObject, actualObject);
+        ProxyCredentials expectedCredentials = new ProxyCredentials(username, password);
+        Assertions.assertEquals(expectedCredentials, actualCredentials);
     }
 
     @Test
     public void testNotEqualsDTO() {
-        ProxyCredentials expectedObject = new ProxyCredentials(username, password);
-        ProxyCredentials actualObject = new ProxyCredentials("testUsername", "testPassword");
-        Assert.assertNotEquals(expectedObject, actualObject);
+        ProxyCredentials newCredentials = new ProxyCredentials("testUsername", "testPassword");
+        Assertions.assertNotEquals(newCredentials, actualCredentials);
     }
 
     @Test
     public void testConstructor() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials(username, password);
-        Assert.assertEquals(username, proxyCredentials.getUsername());
-        Assert.assertEquals(password, proxyCredentials.getPassword());
+        Assertions.assertEquals(username, actualCredentials.getUsername());
+        Assertions.assertEquals(password, actualCredentials.getPassword());
     }
 
     @Test
     public void testSettersAndGetters() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials();
-        proxyCredentials.setUsername(username);
-        proxyCredentials.setPassword(password);
-        Assert.assertEquals(username, proxyCredentials.getUsername());
-        Assert.assertEquals(password, proxyCredentials.getPassword());
+        emptyCredentials.setUsername(username);
+        emptyCredentials.setPassword(password);
+        Assertions.assertEquals(username, emptyCredentials.getUsername());
+        Assertions.assertEquals(password, emptyCredentials.getPassword());
     }
 
     @Test
     public void testHashCode() {
-        ProxyCredentials expectedObject = new ProxyCredentials(username, password);
-        ProxyCredentials actualObject = new ProxyCredentials(username, password);
-        Assert.assertEquals(expectedObject.hashCode(), actualObject.hashCode());
+        ProxyCredentials expectedCredentials = new ProxyCredentials(username, password);
+        Assertions.assertEquals(expectedCredentials.hashCode(), actualCredentials.hashCode());
     }
 
     @Test
     public void testToString() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials(username, password);
-        String expected = "ProxyCredentials{username='username', password='password'}";
-        Assert.assertEquals(expected, proxyCredentials.toString());
+        String expectedToString = "ProxyCredentials{username='username', password='password'}";
+        Assertions.assertEquals(expectedToString, actualCredentials.toString());
     }
 
     @Test
     public void testEmptyConstructor() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials();
-        Assert.assertNull(proxyCredentials.getUsername());
-        Assert.assertNull(proxyCredentials.getPassword());
+        Assertions.assertNull(emptyCredentials.getUsername());
+        Assertions.assertNull(emptyCredentials.getPassword());
     }
 
     @Test
     public void testSetUsernameWithNull() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials(username, password);
-        proxyCredentials.setUsername(null);
-        Assert.assertNull(proxyCredentials.getUsername());
+        actualCredentials.setUsername(null);
+        Assertions.assertNull(actualCredentials.getUsername());
     }
 
     @Test
     public void testSetPasswordWithNull() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials(username, password);
-        proxyCredentials.setPassword(null);
-        Assert.assertNull(proxyCredentials.getPassword());
+        actualCredentials.setPassword(null);
+        Assertions.assertNull(actualCredentials.getPassword());
     }
 
     @Test
     public void testToStringWithNullValues() {
-        ProxyCredentials proxyCredentials = new ProxyCredentials(null, null);
-        String expected = "ProxyCredentials{username='null', password='null'}";
-        Assert.assertEquals(expected, proxyCredentials.toString());
+        String expectedToString = "ProxyCredentials{username='null', password='null'}";
+        Assertions.assertEquals(expectedToString, emptyCredentials.toString());
     }
 }
