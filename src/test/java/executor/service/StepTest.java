@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class StepTest {
 
-    String action = "click";
-    String value = "button";
+    private final String action = "click";
+    private final String value = "button";
 
     @Test
     public void testObjectsAreEqual() {
