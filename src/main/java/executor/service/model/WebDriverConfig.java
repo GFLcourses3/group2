@@ -63,4 +63,14 @@ public class WebDriverConfig {
     public int hashCode() {
         return Objects.hash(webDriverExecutable, userAgent, pageLoadTimeout, implicitlyWait);
     }
+
+    @Override
+    public String toString() {
+        return "WebDriverConfig{" +
+                "webDriverExecutable='" + webDriverExecutable + '\'' +
+                ", userAgent='" + userAgent + '\'' +
+                ", pageLoadTimeout=" + pageLoadTimeout +
+                ", implicitlyWait=" + implicitlyWait +
+                '}';
+    }
 }
